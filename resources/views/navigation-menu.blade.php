@@ -19,6 +19,10 @@
                     <x-jet-nav-link href="http://localhost:8000/book" :active="request()->routeIs('dashboard')">
                         {{ __('Add') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="http://localhost:8000/authors" :active="request()->routeIs('dashboard')">
+                        {{ __('Authors') }}
+                    </x-jet-nav-link>
                     
                 </div>
             </div>

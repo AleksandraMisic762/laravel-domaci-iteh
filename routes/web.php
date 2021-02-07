@@ -24,8 +24,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/book', [BooksController::class, 'add']);
     Route::post('/book', [BooksController::class, 'create']);
 
-    Route::get('/book/{book_id}', [BooksController::class, 'edit']);
-    Route::post('/book/{book_id}', [BooksController::class, 'update']);
+    Route::get('/authors', [BooksController::class, 'seeAuthors']);
+
+    Route::get('/book/{book}', [BooksController::class, 'edit']);
+    Route::get('/book/details/{book}', [BooksController::class, 'details']);
+    Route::post('/book/{book}', [BooksController::class, 'update']);
 
 
 });

@@ -18,6 +18,11 @@ class BooksController extends Controller
         return view('add');
     }
 
+    public function seeAuthors()
+    {
+        return view('seeAuthors');
+    }
+
     public function create(Request $request)
     {
         $this->validate($request, [ //proveri da li je ispravno unesen spoljni kljuc
@@ -41,6 +46,11 @@ class BooksController extends Controller
         return view('edit', compact('book'));
     }
 
+    public function details(Book $book)
+    {
+        return view('details', compact('book'));
+    }
+
     public function update(Request $request, Book $book)
     {
         if (isset($_POST['delete'])) {
@@ -53,7 +63,7 @@ class BooksController extends Controller
                 'description' => 'required'
             ]);
 
-            $book->author =  $request->author;
+            $book->author_id =  $request->author_id;
             $book->title = $request->title;
             $book->description = $request->description;
 
