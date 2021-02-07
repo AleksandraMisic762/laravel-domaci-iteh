@@ -15,7 +15,7 @@ use App\Http\Controllers\BooksController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcome');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
