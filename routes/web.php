@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BooksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/dashboard', [BooksController::class, 'index'])->name('dashboard');
+
+    Route::get('/book', [BooksController::class, 'add']);
+    Route::post('/book', [BooksController::class, 'create']);
+
+    Route::get('/book/{book_id}', [BooksController::class, 'edit']);
+    Route::post('/book/{book_id}', [BooksController::class, 'update']);
+
+
+});
