@@ -7,21 +7,25 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
                 <form action="/book/{{$book->id}}" method="POST">
                     <div class="form-group">
-                    <label for="author_id">Author ID:</label>
-                        <input type="text" name="author_id" class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white mb-5" value={{ $book->author_id }}></input>
+                        <label for="author_id">Author ID:</label>
+                        <select name="author_id" selecte class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium focus:outline-none focus:bg-white my-5">
+                            @foreach(App\Models\Author::all() as $author)
+                            <option value="{{$author->id}}">{{$author->firstname." ".$author->lastname}}</option>
+                            @endforeach
+                        </select>
                         @if ($errors->has('author_id'))
                         <span class="text-danger">{{ $errors->first('author_id') }}</span>
                         @endif
                         <label for="title">Book title:</label>
-                        <input type="text" name="title" class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white mb-5" value={{ $book->title }} ></input>
+                        <input type="text" name="title" class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white mb-5" value={{ $book->title }}></input>
                         @if ($errors->has('title'))
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                         @endif
                         <label for="description">Book description:</label>
-                        <textarea name="description" class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white mb-5" >{{ $book->description }}</textarea>
+                        <textarea name="description" class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white mb-5">{{ $book->description }}</textarea>
                         @if ($errors->has('description'))
                         <span class="text-danger">{{ $errors->first('description') }}</span>
                         @endif
@@ -32,10 +36,10 @@
                     </div>
                     {{ csrf_field() }}
                 </form>
-            </div>    
-        
+            </div>
+
         </div>
-    
+
     </div>
 
 </x-app-layout>

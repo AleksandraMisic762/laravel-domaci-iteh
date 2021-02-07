@@ -11,7 +11,12 @@
                 <form action="/book" method="POST">
                     <div class="form-group">
                         <label for="author_id">Author ID:</label>
-                        <input type="text" name="author_id" class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white my-5"></input>
+                        <select name="author_id" class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium focus:outline-none focus:bg-white my-5" >
+                            @foreach(App\Models\Author::all() as $author)
+                            <option value="{{$author->id}}">{{$author->firstname." ".$author->lastname}}</option>
+                            @endforeach
+                        </select>
+                        <!-- <input type="text" name="author_id" class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-10 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white my-5"></input> -->
                         @if ($errors->has('author_id'))
                         <span class="text-danger">{{ $errors->first('author_id') }}</span>
                         @endif
